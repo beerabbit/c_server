@@ -1,6 +1,6 @@
 //헤-더
 #define NEXT(index,QSIZE) ((index+1)%QSIZE) //큐 인덱스 변경
-
+#define BUFSIZE 1000
 typedef struct Queue{
 
     int *buf; //저장하는 곳
