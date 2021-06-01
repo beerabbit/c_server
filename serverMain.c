@@ -91,7 +91,7 @@ void *sckThread(void* sckArg) //쓰레드 설정
 int main(int argc, char **argv){
     int port, pid;
     int lsock, asock;
-    int i; //세마포어 카운터
+    int i;
     pthread_t sckPth[MAXTHREAD]; //쓰레드 선언
     struct sockaddr_in remote_sin;
     initQueue(&queue, MAXTHREAD); //큐 초기화
@@ -128,11 +128,11 @@ int main(int argc, char **argv){
     while(1){
         socklen_t remote_sin_len = sizeof(remote_sin);
         while((asock = accept(lsock, (struct sockaddr *)&remote_sin, &remote_sin_len))>=0){ //accept
-            printf("현재 %d / %d명 수용중 \n", clientnum, MAXTHREAD);
+            clientnum++;
+            
             if(clientnum > MAXTHREAD){
-                //클라이언트가 최대보다 많으면 이거 보내기
+                //클라이언트가 최대보다 많으면 이거 보내기 (서버 접속 에러)
                 clientnum--;
-                
             }
             else{
                 getFD = asock; //쓰레드에 전역변수로 보냄
