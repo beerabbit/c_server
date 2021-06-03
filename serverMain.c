@@ -35,7 +35,7 @@ void *sckThread(void* sckArg) //쓰레드 설정
         toQueue(&queue,asocks); //큐에 asock 넣어주고
         getFD = -1; //global 변수 초기화 시키고
         if (read(asocks, buf, BUFSIZE) < 0) {
-        perror("[ERR] Failed to read request.\n");
+        perror("[ERR] Failed to read request.\n");//
         errorHandler("500",asocks); return; //에처러리 해야함
         }
         char *method = strtok(buf, " "); //메소드
